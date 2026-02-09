@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <!-- CSS DENTRO DEL MISMO HTML -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #4672b4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: rgb(86, 88, 199);
+            padding: 50px;
+            border-radius: 10px;
+            width: 270px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .resultado {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+
+
+<div class="card">
+    <h2>Calculadora de IMC</h2>
+
+    <input type="number" id="peso" placeholder="Peso en kg" step="0.4">
+    <input type="number" id="altura" placeholder="Altura en metros" step="0.01">
+
+    <button onclick="calcularIMC()">Calcular</button>
+
+    <div class="resultado" id="resultado"></div>
+</div>
+
+<script>
+function calcularIMC() {
+    let peso = parseFloat(document.getElementById("peso").value);
+    let altura = parseFloat(document.getElementById("altura").value);
+
+    if (!peso || !altura) {
+        document.getElementById("resultado").innerText = "Por favor ingresa todos los datos";
+        return;
+    }
+
+    let imc = peso / (altura ** 2);
+    let mensaje = `Tu IMC es ${imc.toFixed(2)} - `;
+
+if (imc < 18.5) {
+    mensaje += "Bajo peso";
+} else if (imc >= 18.5 && imc <= 24.9) {
+    mensaje += "Peso normal";
+} else if (imc >= 25 && imc <= 29.9) {
+    mensaje += "Sobrepeso";
+} else {
+    mensaje += "Obesidad";
+}
+
+    document.getElementById("resultado").innerText = mensaje;
+}
+</script>
+
+<body>
+
+</html>
